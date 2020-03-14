@@ -3,13 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.indovinanumero.FXMLController">
    <top>
@@ -27,9 +29,14 @@
          <children>
             <HBox alignment="CENTER" spacing="20.0">
                <children>
-                  <Button fx:id="btnNuovoTentativo" mnemonicParsing="false" onAction="#handleNuovoTentativo" text="Nuovo Tentativo" />
-                  <Label text="Tentativi rimasti" />
-                  <TextField fx:id="txtTentativiRimasti" disable="true" editable="false" />
+                  <MenuButton fx:id="nuovoTentativo" mnemonicParsing="false" onAction="#doNuovoTentativo" text="Nuovo Tentativo">
+                    <items>
+                      <MenuItem fx:id="nuovoTentativoFacile" mnemonicParsing="false" onAction="#doNuovoTentativo" text="Facile" />
+                      <MenuItem fx:id="nuovoTentativoIntermedio" mnemonicParsing="false" onAction="#doNuovoTentativo" text="Intermedio" />
+                        <MenuItem fx:id="nuovoTentativoDifficile" mnemonicParsing="false" onAction="#doNuovoTentativo" text="Difficile" />
+                    </items>
+                  </MenuButton>
+                  <Button fx:id="consiglio" mnemonicParsing="false" onAction="#doConsiglio" text="Consiglio" />
                </children>
             </HBox>
             <HBox fx:id="layoutTent" alignment="CENTER" disable="true" spacing="20.0">
@@ -48,10 +55,11 @@
       </VBox>
    </center>
    <bottom>
-      <TextArea fx:id="txtAreaMsg" disable="true" editable="false" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets top="20.0" />
-         </BorderPane.margin>
-      </TextArea>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <ProgressBar fx:id="tentRimasti" minHeight="-Infinity" prefWidth="1000000.0" progress="0.0" />
+            <TextArea fx:id="txtAreaMsg" disable="true" editable="false" />
+         </children>
+      </VBox>
    </bottom>
 </BorderPane>
